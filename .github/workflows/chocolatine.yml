@@ -17,5 +17,5 @@ jobs:
         - uses: actions/checkout@v2
           with:
             fetch-depth: 0
-        - name: Only run this if file README exists
+        - name: Check for unwanted files
           run: 'find * -name "*.o" -type f -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \;'
