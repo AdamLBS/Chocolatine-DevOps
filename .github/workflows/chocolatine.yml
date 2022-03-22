@@ -31,4 +31,4 @@ jobs:
              find * -name "*.gcov" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
              find * -name "pain_au_chocolat" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
              find * -name "*"  -type f  \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             echo $lol
+          continue-on-error: false
