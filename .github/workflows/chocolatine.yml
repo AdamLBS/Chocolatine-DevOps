@@ -1,0 +1,21 @@
+name: Chocolatine
+env:
+  MIRROR_URL : git@github.com:EpitechPromo2026/B-DOP-200-MAR-2-1-chocolatine-adam.elaoumari.git
+  EXECUTABLES : pushswap
+on:
+  push:
+    branches-ignore:
+      - 'ga-ignore**'
+  pull_request:
+    branches-ignore:
+      - 'ga-ignore**'
+
+jobs:
+    check_repository_cleanliness :
+     runs-on: ubuntu-latest
+     steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Only run this if file README exists
+          run: '(test -f README && echo README exists) || echo README does not exist, skipping step'
