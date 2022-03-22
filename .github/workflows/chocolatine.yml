@@ -18,4 +18,4 @@ jobs:
           with:
             fetch-depth: 0
         - name: Only run this if file README exists
-          run: 'find * -name "*.o" -type f -exec echo ::error file={},line=1,col=1, title=Unwanted file detected::{}#1 \;'
+          run: 'find * -name "*.o" -type f -exec echo ::error file={},line=1,col=1, title=Unwanted file detected::{} \;'
