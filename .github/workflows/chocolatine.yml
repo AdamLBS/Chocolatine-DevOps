@@ -19,7 +19,7 @@ jobs:
             fetch-depth: 0
         - name: Check for unwanted files
           env:
-            VAL: 0
+            VAL: false
           run: |
              find * | grep -w --line-buffered ".*\.gcno$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=true" >> $GITHUB_ENV
              find * | grep -w --line-buffered ".*\.gcda$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=true" >> $GITHUB_ENV
