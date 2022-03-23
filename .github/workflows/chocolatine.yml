@@ -21,14 +21,6 @@ jobs:
           env:
             lol: 0
           run: |
-             find * -name "*#" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*~" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*.o" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*.a" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*.so" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*.gcno" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*.gcda" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*.gcov" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "pain_au_chocolat" \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
-             find * -name "*"  -type f  \( -exec echo ::error file={},line=1,col=1,title=Unwanted file detected::{} \; -o -exec $lol=1 \; \)
+             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{}
+
           continue-on-error: false
