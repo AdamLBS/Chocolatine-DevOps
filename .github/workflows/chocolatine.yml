@@ -21,6 +21,15 @@ jobs:
           env:
             lol: 0
           run: |
-             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{}
-
+             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered ".*\.gcno$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered ".*\.gcda$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered ".*\.gcov$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered ".*\~$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -w --line-buffered "#.*\$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -i -w --line-buffered "pain_au_chocolat"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -i -w --line-buffered "tmp"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
+             find * | grep -i -w --line-buffered "gitcheck"  | xargs -I {} exit 1
           continue-on-error: false
