@@ -21,15 +21,17 @@ jobs:
           env:
             lol: 0
           run: |
-             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered ".*\.gcno$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered ".*\.gcda$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered ".*\.gcov$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered ".*\~$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -w --line-buffered "#.*\$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -i -w --line-buffered "pain_au_chocolat"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             find * | grep -i -w --line-buffered "tmp"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && touch gitcheck
-             test -f gitcheck && exit 1
+             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered ".*\.gcno$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered ".*\.gcda$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered ".*\.gcov$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered ".*\~$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -w --line-buffered "#.*\$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -i -w --line-buffered "pain_au_chocolat"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+             find * | grep -i -w --line-buffered "tmp"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=1" >> $GITHUB_ENV
+        - name: Check for result
+          if: ${{ VAL }} == "1"
+          run: exit 1
           continue-on-error: false
