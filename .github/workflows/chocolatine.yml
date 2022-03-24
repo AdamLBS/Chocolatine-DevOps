@@ -40,7 +40,7 @@ jobs:
     check_program_compilation :
       runs-on: ubuntu-latest
       container:
-        image: docker pull epitechcontent/epitest-docker
+        image: epitechcontent/epitest-docker
       steps:
         - uses: actions/checkout@v2
           with:
