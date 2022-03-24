@@ -33,6 +33,7 @@ jobs:
              find * | grep -i -w --line-buffered "pain_au_chocolat"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
              find * | grep -i -w --line-buffered "tmp"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
              echo "$VAL"
+             if [ "$VAL" = "false" ]; then exit 0; fi
              if [ "$VAL" = "true" ]; then exit 1; fi
         - name: Check for result
           if:  ${{ env.VAL == true }}
