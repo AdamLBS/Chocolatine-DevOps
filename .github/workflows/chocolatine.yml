@@ -34,8 +34,10 @@ jobs:
              echo "$VAL"
              if [ "$VAL" = "false" ]; then exit 0; fi
              if [ "$VAL" = "true" ]; then exit 1; fi
+        - name: Exit if needed
           if: ${{ env.action_state == 'true' }}
-            exit
+          run:
+            exit 1
           continue-on-error: false
 
     check_program_compilation :
