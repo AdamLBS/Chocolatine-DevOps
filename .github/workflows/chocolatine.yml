@@ -46,7 +46,9 @@ jobs:
           with:
             fetch-depth: 0
         - name: Make
-          run : echo ${{ env.EXECUTABLES }}
+          run : |
+            sed 's/,/ /g'${{ env.EXECUTABLES }} > ${{ env.EXECUTABLES }}
+            echo ${{ env.EXECUTABLES }}
           timeout-minutes: 2
         - name: make clean
           run: make clean
