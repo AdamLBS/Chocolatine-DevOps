@@ -18,8 +18,6 @@ jobs:
           with:
             fetch-depth: 0
         - name: Check for unwanted files
-          env:
-            VAL: false
           run: |
              find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
              find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
@@ -34,9 +32,6 @@ jobs:
              echo "$VAL"
              if [ "$VAL" = "false" ]; then exit 0; fi
              if [ "$VAL" = "true" ]; then exit 1; fi
-        - name: Check for result
-          if:  ${{ env.VAL == true }}
-          run: exit 1
           continue-on-error: false
 
     check_program_compilation :
