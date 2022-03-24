@@ -46,8 +46,11 @@ jobs:
           with:
             fetch-depth: 0
         - name: Make
+          env:
+            TEMP: false
           run : |
-            find . -type f -executable | grep tr ',' ' ' <<<" ${{ env.EXECUTABLES }}"
+            TEST=`echo "${{ env.EXECUTABLES }}" | tr ',' ' '`
+            find . -type f -executable | grep $TEST
           timeout-minutes: 2
         - name: make clean
           run: make clean
