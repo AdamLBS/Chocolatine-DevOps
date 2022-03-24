@@ -1,7 +1,7 @@
 name: Chocolatine
 env:
   MIRROR_URL : git@github.com:EpitechPromo2026/B-DOP-200-MAR-2-1-chocolatine-adam.elaoumari.git
-  EXECUTABLES : pushswap
+  EXECUTABLES : push_swap
 on:
   push:
     branches-ignore:
