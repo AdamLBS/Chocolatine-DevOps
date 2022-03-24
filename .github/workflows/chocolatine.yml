@@ -50,8 +50,7 @@ jobs:
             TEMP: false
           run : |
             TEST=`echo "${{ env.EXECUTABLES }}" | tr ',' ' '`
-            find . -type f -executable | grep $TEST
+            echo $TEST
           timeout-minutes: 2
         - name: make clean
           run: make clean
-          
