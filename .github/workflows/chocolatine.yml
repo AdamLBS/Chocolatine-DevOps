@@ -19,16 +19,16 @@ jobs:
             fetch-depth: 0
         - name: Check for unwanted files
           run: |
-             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered ".*\.gcno$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered ".*\.gcda$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered ".*\.gcov$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered ".*\~$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -w --line-buffered "#.*\$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -i -w --line-buffered "pain_au_chocolat"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
-             find * | grep -i -w --line-buffered "tmp"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
+             find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered ".*\.gcno$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered ".*\.gcda$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered ".*\.gcov$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered ".*\~$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -w --line-buffered "#.*\$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -i -w --line-buffered "pain_au_chocolat"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
+             find * | grep -i -w --line-buffered "tmp"  | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true && echo "ee"
              echo "$VAL"
              if [ "$VAL" = "false" ]; then exit 0; fi
              if [ "$VAL" = "true" ]; then exit 1; fi
