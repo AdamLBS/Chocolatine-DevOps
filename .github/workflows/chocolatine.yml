@@ -47,8 +47,7 @@ jobs:
             fetch-depth: 0
         - name: Make
           run : |
-            tr ',' ' ' <<<" ${{ env.EXECUTABLES }}" >> ${{ env.EXECUTABLES }}
-            echo ${{ env.EXECUTABLES }}
+            find . -type f -executable | grep tr ',' ' ' <<<" ${{ env.EXECUTABLES }}"
           timeout-minutes: 2
         - name: make clean
           run: make clean
