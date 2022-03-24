@@ -21,7 +21,6 @@ jobs:
           env:
             VAL: false
           run: |
-             VAL=false
              find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
              find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
              find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && VAL=true
