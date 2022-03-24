@@ -55,7 +55,7 @@ jobs:
           run: make clean
         - name: check files
           run: |
-            find . -type f -executable | grep $TEST
+            if [[ "${{ env.EXECUTABLES }}" =~ "," ]]; then TEST=`echo "${{ env.EXECUTABLES }} && find . -type f -executable | grep $TEST" | tr ',' ' '`; else find . -type f -executable | grep ${{ env.EXECUTABLES }}; fi;
 
     run_tests :
       needs: [check_repository_cleanliness, check_program_compilation]
