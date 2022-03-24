@@ -1,7 +1,7 @@
 name: Chocolatine
 env:
   MIRROR_URL : git@github.com:EpitechPromo2026/B-DOP-200-MAR-2-1-chocolatine-adam.elaoumari.git
-  EXECUTABLES : pushswap
+  EXECUTABLES : pushswap, salut, bye
 on:
   push:
     branches-ignore:
@@ -36,3 +36,18 @@ jobs:
           if:  ${{ env.VAL == 'true' }}
           run: exit 1
           continue-on-error: false
+
+    check_program_compilation :
+      runs-on: ubuntu-latest
+      container:
+        image: docker pull epitechcontent/epitest-docker
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Make
+          run : echo ${{ env.EXECUTABLES }}
+          timeout-minutes: 2
+        - name: make clean
+          run: make clean
+          
