@@ -22,6 +22,7 @@ jobs:
             VAL: false
           run: |
              echo "VAL=false" >> $GITHUB_ENV
+             VAL=true
              find * | grep -w --line-buffered ".*\.o$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=true" >> $GITHUB_ENV
              find * | grep -w --line-buffered ".*\.a$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=true" >> $GITHUB_ENV
              find * | grep -w --line-buffered ".*\.so$" | xargs -I {} echo ::error file={},line=1,col=1,title=Unwanted file detected::{} && echo "VAL=true" >> $GITHUB_ENV
