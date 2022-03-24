@@ -55,7 +55,6 @@ jobs:
           run: make clean
         - name: check files
           run: |
-            TEST=`echo "${{ env.EXECUTABLES }}" | tr ',' ' '`
             find . -type f -executable | grep $TEST
 
     run_tests :
